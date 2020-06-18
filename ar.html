@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Christopher: SuperCruisr</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./pages/main/main.css" />
+    <link rel="stylesheet" href="public/assets/css/plugin.css" />
+
+    <!-- Main CSS -->
+    
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="public/assets/css/responsive.css" />
+    <!-- import the webpage's javascript file -->
+<link rel="icon" type="image/svg+xml" href="assets/img/urku-ico.svg" />
+    <link rel="stylesheet" href="assets/css/aurora-pack.min.css" />
+    <link rel="stylesheet" href="assets/css/aurora-theme-base.min.css" />
+    <link rel="stylesheet" href="assets/css/urku.css" />
+    <script src="./pages/main/main.js"></script>
+  </head>
+
+  <body>
+    <header class="ae-container-fluid ae-container-fluid--full rk-header ">
+      <input type="checkbox" id="mobile-menu" class="rk-mobile-menu" />
+      <label for="mobile-menu">
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+      </label>
+      <div class="ae-container-fluid rk-topbar">
+        <h1 class="rk-logo">
+          <a href="index.html">Christopher<br />Watt-Pringle</a>
+        </h1>
+        <nav class="rk-navigation">
+          <ul class="rk-menu">
+            <li class="active rk-menu__item">
+              <a href="index.html" class="rk-menu__link">Home</a>
+            </li>
+            <li class="rk-menu__item">
+              <a href="portfolio.html" class="rk-menu__link">Resume</a>
+              <nav class="rk-menu__sub">
+                <ul class="rk-container">
+                  <li class="rk-menu__item">
+                    <a href="portfolio-item.html" class="rk-menu__link"
+                      >CV Overview</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="portfolio-item2.html" class="rk-menu__link"
+                      >Methodology</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="portfolio-item3.html" class="rk-menu__link"
+                      >Current Focus</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </li>
+            <li class="rk-menu__item">
+              <a href="blog.html" class="rk-menu__link">Blog</a>
+            </li>
+            <li class="rk-menu__item">
+              <a href="#0" class="rk-menu__link">Pages</a>
+              <nav class="rk-menu__sub">
+                <ul class="rk-container">
+                  <li class="rk-menu__item">
+                    <a href="public/resume.html" class="rk-menu__link"
+                      >XR Portfolio</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="ar.html" class="rk-menu__link"
+                      >SuperCruisr Studio</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="public/index.html" class="rk-menu__link"
+                      >XR Browser</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </li>
+            <li class="rk-menu__item">
+              <a href="contact.html" class="rk-menu__link">Contact Me</a>
+            </li>
+          </ul>
+          <form class="rk-search">
+            <input
+              type="text"
+              placeholder="Search"
+              id="urku-search"
+              class="rk-search-field"
+            />
+            <label for="urku-search">
+              <svg>
+                <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+              </svg>
+            </label>
+          </form>
+        </nav>
+      </div>
+    </header>
+    <div class="background">
+      <!-- to be removed on release -->
+
+      <br /><br /><br /><br /><br /><br />
+      <div class="content">
+        <h1>
+          
+        Build WebXR</h1>
+        <p class="paragraph">
+          SuperCruisr is a series of development and XR creation tools I've published.<br><br> 
+            On this page, you can create location or marker-based AR
+            application and download your code <br /><br>Using SuperCruisr doesn’t require
+          any knowledge of coding. You can start working on your content now.
+        </p>
+
+        <img class="splashscreen" src="https://cdn.glitch.com/a0f896a4-4e28-47a9-b792-0307f9c0c167%2Fsplashscreen.png" />
+
+        <p class="lead">Pick your project type</p>
+
+        <div>
+          <label class="radio-container paragraph">
+            <p>
+              
+            Location-based</p>
+            <input
+              id="location"
+              type="radio"
+              name="radio"
+              onclick="radioOnclick(this)"
+            />
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="radio-container paragraph">
+            <p>
+              
+            Marker-based</p>
+            <input
+              id="marker"
+              type="radio"
+              name="radio"
+              onclick="radioOnclick(this)"
+            />
+            <span class="checkmark"></span>
+          </label>
+
+          <a
+            onclick="anchorOnclick(this)"
+            id="start-building"
+            class="primary-button"
+            >Start building</a
+          >
+          <div id="error" class="error" style="visibility: hidden;">
+            Please, select a project type.
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="public/assets/js/plugin.js"></script>
+    <script src="public/assets/js/main.js"></script>
+  </body>
+</html>
