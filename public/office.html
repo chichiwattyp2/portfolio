@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Christopher Watt-Pringle</title>
+    <meta name="description" content="A-Frame local video player" />
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- illumination component done by Alfredo, cf https://medium.com/@alfredos/ -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="easyrtc/easyrtc.js"></script>
+    <script src="https://unpkg.com/networked-aframe@^0.6.0/dist/networked-aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="/js/travel-node-component.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+    <script src="/js/spawn-in-circle.component.js"></script>
+    <link rel="icon" type="image/svg+xml" href="../assets/img/urku-ico.svg" />
+    <link rel="stylesheet" href="../assets/css/aurora-pack.min.css" />
+    <link rel="stylesheet" href="../assets/css/aurora-theme-base.min.css" />
+    <link rel="stylesheet" href="../assets/css/urku.css" />
+  </head>
+  <body
+    ondragenter="event.stopPropagation(); event.preventDefault();"
+    ondragover="event.stopPropagation(); event.preventDefault();"
+    ondrop="event.stopPropagation(); event.preventDefault(); dodrop(event);"
+  >
+    <!-- via https://jsbin.com/hiqasek/edit?html,js,output -->
+    <script>
+      function dodrop(event) {
+        var dt = event.dataTransfer;
+        var files = dt.files;
+
+        var fileURL = URL.createObjectURL(files[0]);
+        var videoNode = document.querySelector("video");
+        videoNode.src = fileURL;
+      }
+    </script>
+    <header class="ae-container-fluid ae-container-fluid--full rk-header ">
+      <input type="checkbox" id="mobile-menu" class="rk-mobile-menu" />
+      <label for="mobile-menu">
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+        <svg>
+          <use xlink:href="assets/img/symbols.svg#bar"></use>
+        </svg>
+      </label>
+      <div class="ae-container-fluid rk-topbar">
+        <h1 class="rk-logo">
+          <a href="/../index.html">Christopher<br />Watt-Pringle</a>
+        </h1>
+        <nav class="rk-navigation">
+          <ul class="rk-menu">
+            <li class="active rk-menu__item">
+              <a href="/../index.html" class="rk-menu__link">Home</a>
+            </li>
+            <li class="rk-menu__item">
+              <a href="/../portfolio.html" class="rk-menu__link">Resume</a>
+              <nav class="rk-menu__sub">
+                <ul class="rk-container">
+                  <li class="rk-menu__item">
+                    <a href="/../portfolio-item.html" class="rk-menu__link"
+                      >CV Overview</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="/../portfolio-item2.html" class="rk-menu__link"
+                      >Methodology</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="/../portfolio-item3.html" class="rk-menu__link"
+                      >Current Focus</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </li>
+            <li class="rk-menu__item">
+              <a href="blog.html" class="rk-menu__link">Blog</a>
+            </li>
+            <li class="rk-menu__item">
+              <a href="#0" class="rk-menu__link">Pages</a>
+              <nav class="rk-menu__sub">
+                <ul class="rk-container">
+                  <li class="rk-menu__item">
+                    <a href="resume.html" class="rk-menu__link">XR Portfolio</a>
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="/../ar.html" class="rk-menu__link"
+                      >SuperCruisr Studio</a
+                    >
+                  </li>
+                  <li class="rk-menu__item">
+                    <a href="index.html" class="rk-menu__link">XR Browser</a>
+                  </li>
+                </ul>
+              </nav>
+            </li>
+            <li class="rk-menu__item">
+              <a href="/../contact.html" class="rk-menu__link">Contact Us</a>
+            </li>
+          </ul>
+          <form class="rk-search">
+            <input
+              type="text"
+              placeholder="Search"
+              id="urku-search"
+              class="rk-search-field"
+            />
+            <label for="urku-search">
+              <svg>
+                <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+              </svg>
+            </label>
+          </form>
+        </nav>
+      </div>
+    </header>
+
+    <script>
+      function switchTo360() {
+        if (document.getElementById("threesixty").checked) {
+          document.querySelector("a-videosphere").setAttribute("visible", true);
+          document.querySelector("a-video").setAttribute("visible", false);
+          document.querySelector("a-sky").setAttribute("visible", false);
+          document.querySelector("#room").setAttribute("visible", false);
+        } else {
+          document
+            .querySelector("a-videosphere")
+            .setAttribute("visible", false);
+          document.querySelector("a-video").setAttribute("visible", true);
+          document.querySelector("a-sky").setAttribute("visible", true);
+          document.querySelector("#room").setAttribute("visible", true);
+        }
+      }
+
+      function mobileStart() {
+        var videoEl = document.querySelector("#rpo");
+        videoEl.play();
+        var playbutton = document.querySelector("#interface");
+        playbutton.style.display = "none";
+      }
+
+      if (AFRAME.utils.device.isMobile()) {
+        var playbutton = document.querySelector("#mobilesupport");
+        playbutton.style.display = "block";
+      }
+
+      // via https://stackoverflow.com/questions/8885701/play-local-hard-drive-video-file-with-html5-video-tag
+      // alt solution https://github.com/Utopiah/vrify
+      (function localFileVideoPlayer() {
+        "use strict";
+        var URL = window.URL || window.webkitURL;
+        var displayMessage = function(message, isError) {
+          var element = document.querySelector("#message");
+          element.innerHTML = message;
+          element.className = isError ? "error" : "info";
+        };
+        var playSelectedFile = function(event) {
+          var file = this.files[0];
+          var type = file.type;
+          var videoNode = document.querySelector("video");
+          var canPlay = videoNode.canPlayType(type);
+          if (canPlay === "") canPlay = "no";
+          var message = 'Can play type "' + type + '": ' + canPlay;
+          var isError = canPlay === "no";
+          displayMessage(message, isError);
+
+          if (isError) {
+            return;
+          }
+
+          var fileURL = URL.createObjectURL(file);
+          videoNode.src = fileURL;
+        };
+        var inputNode = document.querySelector("input");
+        inputNode.addEventListener("change", playSelectedFile, false);
+      })();
+
+      // load via URL, works locally using http-serv --cors in the folder of your videos
+      AFRAME.registerComponent("src-via-url", {
+        init: function() {
+          var src = AFRAME.utils.getUrlParameter("src");
+          if (src) {
+            var videoEl = this.el.getAttribute("src");
+            document.querySelector(videoEl).setAttribute("src", src);
+          }
+        }
+      });
+      AFRAME.registerComponent("hide-ui-vr", {
+        init: function() {
+          function hideUI() {
+            document.querySelector("#UI").style.display = "none";
+          }
+          AFRAME.scenes[0].addEventListener("enter-vr", hideUI);
+        }
+      });
+
+      // seems to have no effect
+      window.setTimeout(function() {
+        window.addEventListener(
+          "drop",
+          function(event) {
+            // prevent default action (open as link for some elements)
+            event.stopPropagation();
+            event.preventDefault();
+            alert(event);
+          },
+          false
+        );
+      }, 5000);
+    </script>
+    <a-scene hide-ui-vr vr-mode-ui="enabled: true" background color="#fff">
+      <!-- opt https://github.com/oscarmarinmiro/aframe-video-controls -->
+      <a-assets>
+        <!-- <video loop autoplay="true" src="http://localhost:8080/rnms3e5.webm" id="rpo"></video> -->
+        <video loop autoplay="true" src="" id="rpo"></video>
+        <a-asset-item
+          id="coference"
+          src="https://beta-supercruisr.neocities.org/assets/coference.glb"
+        ></a-asset-item>
+        <img
+          id="dawn"
+          crossorigin="anonymous"
+          src="https://cdn.glitch.com/9f5d1b92-a581-4134-8864-9bd98ff8ed97%2Fdawn.jpeg"
+        />
+      </a-assets>
+      <a-video
+        src-via-url=""
+        src="#rpo"
+        width="1.6"
+        position="1.86675 1.6 -11.87869"
+        illumination=""
+        material=""
+        geometry=""
+        scale="3 3 1"
+      ></a-video>
+      <a-sky src="#dawn"></a-sky>
+      <a-videosphere src="#rpo" visible="false"></a-videosphere>
+
+      <a-camera postion="0 1.6 0"></a-camera>
+      <a-entity
+        light="type: hemisphere; color: #33C; groundColor: #fcba03; intensity: 2"
+      ></a-entity>
+      <a-gltf-model
+        src="#coference"
+        position="1.92462 -1.10968 -2.0929"
+        scale="0.018 0.018 0.018"
+        gltf-model="https://beta-supercruisr.neocities.org/assets/coference.glb"
+        rotation="0 180 0"
+      >
+      </a-gltf-model>
+    </a-scene>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
