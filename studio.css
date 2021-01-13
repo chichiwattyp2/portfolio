@@ -1,46 +1,34 @@
-font-family: "ClobberGroteskW01-Medium";
-src: url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.eot");
-src: url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.eot?#iefix")
-    format("embedded-opentype"),
-  url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.woff2")
-    format("woff2"),
-  url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.woff")
-    format("woff"),
-  url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.ttf")
-    format("truetype"),
-  url("//db.onlinewebfonts.com/t/f4e31ff864f4297e98cd95bd1d07fd7b.svg#ClobberGroteskW01-Medium")
-    format("svg");
-
-font-family: "grifterbold";
-src: url("https://beta-supercruisr.neocities.org/assets/css/grifterbold-webfont.woff2")
-    format("woff2"),
-  url("https://beta-supercruisr.neocities.org/assets/css/grifterbold-webfont.woff")
-    format("woff");
-font-weight: normal;
-font-style: normal;
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
 /* Color Variables */
 :root {
-  --primary-color: #ff7d03;
-  --primary-color-dark: #ff7d03;
-  --secondary-color: #fffff;
-  --secondary-color-dark: #fffff0;
-  --passive-color: #ffffff;
-  --passive-color-dark: #f2f2f2;
-  --link-color: #fce005;
+  --primary-color: #E1AD01;
+  --primary-color-dark: #b88e06;
+  --secondary-color: #000E1B;
+  --secondary-color-dark: #010a12;
+  --passive-color: #f2f2f2;
+  --passive-color-dark: #d9d9d9;
+  --link-color: #0000ff;
   --max-z-index: 99999;
 }
 
 /* Typography */
 .title {
-  font-family: ClobberGroteskW01-Medium;
+  font-family: Chakra Petch;
   font-style: normal;
   font-weight: bold;
   font-size: 3em;
 }
 
+.bold {
+  font-weight: bold;
+  color: var(--link-color);
+}
+
 .lead {
-  font-family: ClobberGroteskW01-Medium;
+  font-family: Chakra Petch;
   font-style: normal;
   font-weight: bold;
   font-size: 1.75em;
@@ -51,7 +39,7 @@ font-style: normal;
 .small,
 .link,
 .error {
-  font-family: ClobberGroteskW01-Medium;
+  font-family: Source Sans Pro;
   font-style: normal;
   font-weight: normal;
   line-height: 140%;
@@ -82,51 +70,52 @@ font-style: normal;
 .secondary-button,
 .passive-button {
   display: inline-block;
-  font-family: ClobberGroteskW01-Medium;
+  font-family: Chakra Petch;
   font-style: normal;
   font-weight: 600;
   font-size: 1em;
   line-height: 1.25em;
   height: 3.5em;
-  border: none;
-  border: 1px solid #ffffff;
+  border: 1.5px solid black;
   box-sizing: border-box;
-
+  box-shadow: 10px 10px 0px black;
+  border-radius: 10px;
   padding: 1em 1.25em;
   margin: 1.875em 0;
   text-decoration: none;
-  color: #ffffff;
+  color: black;
   cursor: pointer;
 }
 
 .primary-button:active,
 .secondary-button:active,
 .passive-button:active {
+  box-shadow: 5px 5px 0px #000000;
   transform: translateY(4px);
 }
 
 .primary-button {
-  background: transparent;
+  background: var(--primary-color);
 }
 
 .primary-button:hover {
-  background: transparent;
+  background: var(--primary-color-dark);
 }
 
 .secondary-button {
-  background: transparent;
+  background: var(--secondary-color);
 }
 
 .secondary-button:hover {
-  background: transparent;
+  background: var(--secondary-color-dark);
 }
 
 .passive-button {
-  background: transparent;
+  background: var(--passive-color);
 }
 
 .passive-button:hover {
-  background: transparent;
+  background: var(--passive-color-dark);
 }
 
 .cursor-pointer {
@@ -148,7 +137,7 @@ page-header {
   align-items: center;
   position: fixed;
   width: 100%;
-  background: var(--passive-color);
+  background: var(--primary-color);
   z-index: var(--max-z-index);
 }
 
@@ -157,7 +146,6 @@ page-footer {
   background: var(--secondary-color);
   width: 100%;
 }
-
 
 .pages-content {
   font-family: Source Sans Pro;
