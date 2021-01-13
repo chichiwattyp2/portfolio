@@ -89,13 +89,13 @@ font-style: normal;
   line-height: 1.25em;
   height: 3.5em;
   border: none;
-  border: 1px solid #ffffff;
+  border: 1px solid #111;
   box-sizing: border-box;
 
   padding: 1em 1.25em;
   margin: 1.875em 0;
   text-decoration: none;
-  color: #ffffff;
+  color: #111;
   cursor: pointer;
 }
 
@@ -150,12 +150,6 @@ page-header {
   width: 100%;
   background: var(--passive-color);
   z-index: var(--max-z-index);
-}
-
-page-footer {
-  position: absolute;
-  background: var(--secondary-color);
-  width: 100%;
 }
 
 

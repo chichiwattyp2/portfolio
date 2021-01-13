@@ -65,58 +65,7 @@
   color: #df0000;
 }
 
-/* Buttons */
-.primary-button,
-.secondary-button,
-.passive-button {
-  display: inline-block;
-  font-family: Chakra Petch;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1em;
-  line-height: 1.25em;
-  height: 3.5em;
-  border: 1.5px solid black;
-  box-sizing: border-box;
-  box-shadow: 10px 10px 0px black;
-  border-radius: 10px;
-  padding: 1em 1.25em;
-  margin: 1.875em 0;
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
 
-.primary-button:active,
-.secondary-button:active,
-.passive-button:active {
-  box-shadow: 5px 5px 0px #000000;
-  transform: translateY(4px);
-}
-
-.primary-button {
-  background: var(--primary-color);
-}
-
-.primary-button:hover {
-  background: var(--primary-color-dark);
-}
-
-.secondary-button {
-  background: var(--secondary-color);
-}
-
-.secondary-button:hover {
-  background: var(--secondary-color-dark);
-}
-
-.passive-button {
-  background: var(--passive-color);
-}
-
-.passive-button:hover {
-  background: var(--passive-color-dark);
-}
 
 .cursor-pointer {
   cursor: pointer;
@@ -139,12 +88,6 @@ page-header {
   width: 100%;
   background: var(--primary-color);
   z-index: var(--max-z-index);
-}
-
-page-footer {
-  position: absolute;
-  background: var(--secondary-color);
-  width: 100%;
 }
 
 .pages-content {
